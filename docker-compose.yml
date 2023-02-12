@@ -1,0 +1,28 @@
+version: '3.1'
+services:
+  student:
+    image: albinxavier/studentservice
+    ports:
+      - "9991:9991"
+    depends_on:
+      - book
+      - eureka
+  book:
+    image: albinxavier/bookservice
+    ports:
+      - "9992:9992"
+    depends_on:
+      - postgresqldb
+      - eureka
+  eureka:
+    image: albinxavier/namingserver
+    ports:
+      - "8761:8761"
+  postgresqldb:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
