@@ -1,19 +1,19 @@
 version: '3.1'
 services:
   eureka:
-    image: naming-server
+    image: albinxavier/naming-server
     ports:
       - "8761:8761"
      
   student:
-    image: student-service   
+    image: albinxavier/student-service   
     ports:
       - "9991:9991"
     depends_on:
       - book
       - eureka
   book:
-    image: book-service
+    image: albinxavier/book-service
     ports:
       - "9992:9992"
     depends_on:
